@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.android.chatframe.MainActivity">
+
+    <TextView
+        android:id="@+id/sample_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Swig测试" />
+
+    <TextView
+        android:id="@+id/sample_line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RIL框架测试"
+        android:textColor="#fff"
+        android:layout_marginTop="10dip"
+        android:background="#256" />
+
+    <RelativeLayout
+        android:id="@+id/ril_rlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sample_line1"
+        android:layout_marginTop="5dip">
+
+        <TextView
+            android:id="@+id/resultTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show result"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dip" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/resultTxt"
+            android:layout_marginTop="5dip">
+
+            <Button
+                android:id="@+id/rejectBtn"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="拒接"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/acceptBtn"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="接听"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dip"/>
+
+            <Button
+                android:id="@+id/dialBtn"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="拨号"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dip" />
+
+            <Button
+                android:id="@+id/hangUpBtn"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="挂断"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dip" />
+
+            <Button
+                android:id="@+id/sendSmsBtn"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="发短信"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dip" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/sample_line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="棋牌游戏功能测试"
+        android:textColor="#fff"
+        android:layout_marginTop="10dip"
+        android:background="#256" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dip"
+        android:layout_below="@+id/sample_line2">
+
+        <Button
+            android:id="@+id/logonPlazaBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="登陆游戏大厅"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dip" />
+
+        <Button
+            android:id="@+id/registerPlazaBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="注册大厅账号"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dip" />
+
+        <Button
+            android:id="@+id/unregisterBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="注销大厅账号"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dip" />
+
+    </LinearLayout>
+
+</LinearLayout>

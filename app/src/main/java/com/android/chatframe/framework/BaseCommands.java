@@ -31,7 +31,6 @@ public abstract class BaseCommands implements CommandsInterface {
     protected Context mContext;
     protected Object mStateMonitor = new Object();
 
-    protected RegistrantList mRadioStateChangedRegistrants = new RegistrantList();
     protected RegistrantList mCallStateRegistrants = new RegistrantList();
 
     protected Registrant mGsmSmsRegistrant;
@@ -43,22 +42,6 @@ public abstract class BaseCommands implements CommandsInterface {
     }
 
     //***** CommandsInterface implementation
-
-    @Override
-    public void registerForRadioStateChanged(Handler h, int what, Object obj) {
-        Registrant r = new Registrant (h, what, obj);
-
-        synchronized (mStateMonitor) {
-            mRadioStateChangedRegistrants.add(r);
-        }
-    }
-
-    @Override
-    public void unregisterForRadioStateChanged(Handler h) {
-        synchronized (mStateMonitor) {
-            mRadioStateChangedRegistrants.remove(h);
-        }
-    }
 
     @Override
     public void setOnNewGsmSms(Handler h, int what, Object obj) {
@@ -76,13 +59,16 @@ public abstract class BaseCommands implements CommandsInterface {
     @Override
     public void registerForCallStateChanged(Handler h, int what, Object obj) {
         Registrant r = new Registrant (h, what, obj);
-
-        mCallStateRegistrants.add(r);
+        synchronized (mStateMonitor) {
+            mCallStateRegistrants.add(r);
+        }
     }
 
     @Override
     public void unregisterForCallStateChanged(Handler h) {
-        mCallStateRegistrants.remove(h);
+        synchronized (mStateMonitor) {
+            mCallStateRegistrants.remove(h);
+        }
     }
 
     @Override

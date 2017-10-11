@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
 
-import com.android.chatframe.BugleApplication;
 import com.android.chatframe.R;
 import com.android.chatframe.game.GameNativeInterface;
 import com.android.chatframe.game.OcxGameCallbackImpl;
@@ -26,7 +25,6 @@ import com.android.chatframe.game.gametype.tagUserData;
 import com.android.chatframe.game.gametype.GameConstant;
 import com.android.chatframe.util.Assert;
 import com.android.chatframe.util.LogUtil;
-import com.squareup.leakcanary.RefWatcher;
 
 import java.lang.ref.WeakReference;
 
@@ -64,8 +62,6 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = BugleApplication.getRefWatcher(this);
-        refWatcher.watch(this);
     }
 
     private void initView(Bundle b){

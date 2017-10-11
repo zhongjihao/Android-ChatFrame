@@ -949,11 +949,6 @@ public final class RIL extends BaseCommands implements CommandsInterface {
                 }
                 break;
             }
-            case RIL_UNSOL_RESPONSE_CONNECT_STATE_CHANGED:{
-                if (RILJ_LOGD) unsljLogMore(response, (String)ret);
-                mRadioStateChangedRegistrants.notifyResult(ret);
-                break;
-            }
             case RIL_UNSOL_RESPONSE_CALL_STATE_CHANGED:{
                 if (RILJ_LOGD) unsljLog(response);
 

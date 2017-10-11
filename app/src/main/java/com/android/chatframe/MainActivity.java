@@ -40,7 +40,6 @@ import com.android.chatframe.ui.UIIntents;
 import com.android.chatframe.util.Assert;
 import com.android.chatframe.util.Assert.RunsOnMainThread;
 import com.android.chatframe.util.LogUtil;
-import com.squareup.leakcanary.RefWatcher;
 
 import java.util.ArrayList;
 import java.lang.ref.WeakReference;
@@ -123,9 +122,6 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
             mDialMonitor.unregister();
         }
         mDialMonitor = null;
-
-        RefWatcher refWatcher = BugleApplication.getRefWatcher(this);
-        refWatcher.watch(this);
     }
 
     private SendMessageActionMonitor mSendMsgMonitor;
@@ -304,7 +300,6 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
             case MsgDispatcher.EVENT_ACCEPT_CALL_COMPLETE:
             case MsgDispatcher.EVENT_HANGUP_COMPLETE:
             case MsgDispatcher.EVENT_REJECT_CALL_COMPLETE:
-            case MsgDispatcher.EVENT_CONNECT_STATE_CHANGE:
             case MsgDispatcher.EVENT_CALL_RING:
                 if(msg.getData() != null && msg.getData().getSerializable("Throwable") !=null){
                     Toast.makeText(this,(String)(msg.obj),Toast.LENGTH_LONG).show();

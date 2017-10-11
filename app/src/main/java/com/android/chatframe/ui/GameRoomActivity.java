@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.chatframe.BugleApplication;
 import com.android.chatframe.R;
 import com.android.chatframe.game.GameNativeInterface;
 import com.android.chatframe.game.OcxGameCallbackImpl;
@@ -22,7 +21,6 @@ import com.android.chatframe.game.gametype.CMD_GR_UserStatus;
 import com.android.chatframe.game.gametype.GameConstant;
 import com.android.chatframe.game.gametype.tagUserData;
 import com.android.chatframe.util.Assert;
-import com.squareup.leakcanary.RefWatcher;
 
 import java.lang.ref.WeakReference;
 
@@ -77,8 +75,6 @@ public class GameRoomActivity extends AppCompatActivity implements View.OnClickL
     public void onDestroy() {
         super.onDestroy();
         GameNativeInterface.deleteRoom();
-        RefWatcher refWatcher = BugleApplication.getRefWatcher(this);
-        refWatcher.watch(this);
     }
 
     @Override

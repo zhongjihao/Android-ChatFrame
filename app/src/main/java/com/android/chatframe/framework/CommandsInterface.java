@@ -23,10 +23,6 @@ import android.os.Handler;
 public interface CommandsInterface {
     void startRild();
 
-    void registerForRadioStateChanged(Handler h, int what, Object obj);
-    void unregisterForRadioStateChanged(Handler h);
-
-
     void setOnNewGsmSms(Handler h, int what, Object obj);
     void unSetOnNewGsmSms(Handler h);
 

@@ -19,7 +19,6 @@ public class MsgDispatcher extends Handler {
     public static final int EVENT_ACCEPT_CALL_COMPLETE  = 6;
     public static final int EVENT_REJECT_CALL_COMPLETE  = 7;
     public static final int EVENT_CALL_RING  = 8;
-    public static final int EVENT_CONNECT_STATE_CHANGE   = 9;
 
     private final CommandsInterface mCi;
     private RequestEventListener listenr;
@@ -27,7 +26,6 @@ public class MsgDispatcher extends Handler {
     public MsgDispatcher(CommandsInterface ci) {
         mCi = ci;
         mCi.registerForCallStateChanged(this, EVENT_CALL_STATE_CHANGE, null);
-        mCi.registerForRadioStateChanged(this, EVENT_CONNECT_STATE_CHANGE, null);
         mCi.setOnNewGsmSms(this, EVENT_NEW_SMS, null);
         mCi.setOnCallRing(this, EVENT_CALL_RING, null);
         mCi.startRild();
@@ -44,6 +42,7 @@ public class MsgDispatcher extends Handler {
     @Override
     public void handleMessage(Message msg) {
         android.util.Log.d(LOG_TAG, "MsgDispatcher msg type: "+msg.what);
+        if(listenr == null) return;
         switch (msg.what) {
             case EVENT_SEND_SMS_COMPLETE:
                 listenr.onSentSmsComplete(msg);
@@ -62,9 +61,6 @@ public class MsgDispatcher extends Handler {
                 break;
             case EVENT_REJECT_CALL_COMPLETE:
                 listenr.onRejectComplete(msg);
-                break;
-            case EVENT_CONNECT_STATE_CHANGE:
-                listenr.onConnectComplete(msg);
                 break;
             case EVENT_CALL_RING:
                 listenr.onIncoming(msg);
@@ -106,7 +102,6 @@ public class MsgDispatcher extends Handler {
         mCi.unSetOnNewGsmSms(this);
         mCi.unregisterForCallStateChanged(this);
         mCi.unSetOnCallRing(this);
-        mCi.unregisterForRadioStateChanged(this);
     }
 
 }

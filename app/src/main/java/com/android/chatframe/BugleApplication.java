@@ -25,8 +25,6 @@ import android.os.Handler;
 import android.os.Looper;
 import java.io.File;
 import java.lang.Thread.UncaughtExceptionHandler;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.android.chatframe.config.CarrierConfigValuesLoader;
 import com.android.chatframe.config.MmsConfig;
 import com.android.chatframe.datamodel.DataModel;
@@ -62,13 +60,11 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
 
     private static BugleApplication application;
     private MsgDispatcher dispatcher;
-    private RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
         Trace.beginSection("app.onCreate");
         super.onCreate();
-        refWatcher = LeakCanary.install(this);
         // Note onCreate is called in both test and real application environments
         if (!sRunningTests) {
             application = this;
@@ -87,11 +83,6 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
 
     public static MsgDispatcher getDispatcher(){
         return application.dispatcher;
-    }
-
-    public static RefWatcher getRefWatcher(Context context) {
-        BugleApplication application = (BugleApplication) context.getApplicationContext();
-        return application.refWatcher;
     }
 
     // Called by the "real" factory from FactoryImpl.register() (i.e. not run in tests)

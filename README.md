@@ -11,7 +11,7 @@ ChatFrame工程分为三大部分，每部分都是相互独立。
    采用start(ActionMonitor monitor)方法启动Action还会回调onActionSucceeded或onActionFailed，其中这两个方法最后一个参数result有两个来源，如果在executeAction方法中调用了requestBackgroundWork()方法，
    则参数result来自processBackgroundResponse或processBackgroundFailure的返回值; 反之参数result则来自executeAction方法的返回值。
    
-   两种Action的启动方式具体用法详见SendMessageAction类和DialAction类。
+   两种Action的启动方式具体用法详见SendMessageAction类、DialAction类、GamePlazaAction类、GameLogonAction类、GameRoomAction类等。
 
 
 
@@ -27,9 +27,6 @@ ChatFrame工程分为三大部分，每部分都是相互独立。
 
 
    
-
-	   
-
-
-
+第三部分: Socket网络编程NDK开发框架实现
+   在AndroidStudio环境下以斗地主游戏为例进行NDK开发，JNI采用动态加载方式，动态库需要再jni目录下使用ndk-build手动编译即可，具体代码见jni目录。
 

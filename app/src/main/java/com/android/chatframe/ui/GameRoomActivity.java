@@ -1,6 +1,7 @@
 package com.android.chatframe.ui;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -142,12 +143,16 @@ public class GameRoomActivity extends AppCompatActivity implements View.OnClickL
                         break;
                 }
             }
-
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return false;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 }

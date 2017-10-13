@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Message;
 import android.os.Handler;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.SharedPreferences;
@@ -102,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
         GameNativeInterface.registerOcxInterface(ocx);
         OcxGameCallbackImpl.registerOcxPlazaEventListener(this);
 
-
         handle = new MainHandler(this);
     }
 
@@ -121,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
             mDialMonitor.unregister();
         }
         mDialMonitor = null;
+
+        handle = null;
+        OcxGameCallbackImpl.unRegisterOcxPlazaEventListener();
+        BugleApplication.getDispatcher().dispose();
     }
 
     private SendMessageActionMonitor mSendMsgMonitor;
@@ -407,8 +411,11 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
                         break;
                 }
             }
-
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 }

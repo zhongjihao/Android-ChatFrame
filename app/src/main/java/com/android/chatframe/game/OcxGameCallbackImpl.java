@@ -57,6 +57,10 @@ public class OcxGameCallbackImpl implements OcxGameCallback {
         ocxPlazalisten = l;
     }
 
+    public static void unRegisterOcxPlazaEventListener(){
+        ocxPlazalisten = null;
+    }
+
     public static void registerOcxLoginRoomEventListener(OcxLoginRoomEventListener l){
         ocxLoginRoomlisten = l;
     }

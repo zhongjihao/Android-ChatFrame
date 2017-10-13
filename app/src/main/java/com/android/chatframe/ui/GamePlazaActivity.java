@@ -1,5 +1,6 @@
 package com.android.chatframe.ui;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -161,5 +162,10 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return false;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 }

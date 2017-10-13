@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Gravity;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
     private TextView accInfo_tv;
     private TextView title_tv;
     private LinearLayout room_llayout;
+    private Button onExit_btn;
     private Context context;
     private MainHandler handle;
     private CMD_GR_ServerInfo mServerInfo;
@@ -51,6 +53,7 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
         accInfo_tv = (TextView)findViewById(R.id.accInfo_tv);
         title_tv = (TextView)findViewById(R.id.title_tv);
         room_llayout = (LinearLayout)findViewById(R.id.room_llayout);
+        onExit_btn = (Button)findViewById(R.id.onExit_btn);
         Bundle b = getIntent().getBundleExtra(UIIntents.LOGIN_FINISH_INFO);
         Assert.notNull(b);
         initView(b);
@@ -101,6 +104,13 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
             roomBtn.setTag(i);
             room_llayout.addView(roomBtn);
         }
+
+        onExit_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -144,7 +154,11 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
                         break;
                 }
             }
-
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return false;
     }
 }

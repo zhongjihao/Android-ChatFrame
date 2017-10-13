@@ -15,9 +15,8 @@ import android.widget.Toast;
 import com.android.chatframe.framework.MsgDispatcher;
 import com.android.chatframe.framework.RequestEventListener;
 import com.android.chatframe.datamodel.action.SendMessageAction;
-import com.android.chatframe.datamodel.action.SendMessageAction.SendMessageActionListener;
 import com.android.chatframe.datamodel.action.DialAction;
-import com.android.chatframe.datamodel.action.DialAction.DialActionListener;
+import com.android.chatframe.datamodel.action.GameLogonAction;
 import com.android.chatframe.datamodel.action.DialAction.DialActionMonitor;
 import com.android.chatframe.datamodel.action.SendMessageAction.SendMessageActionMonitor;
 import com.android.chatframe.datamodel.action.ActionMonitor;
@@ -268,27 +267,37 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
                     mDialMonitor = DialAction.getOrCreateDialMonitor(3,mListBinding.getData(), this);
                 }
                 break;
-            case R.id.logonPlazaBtn:
+            case R.id.logonPlazaBtn: {
                 LogUtil.d("MainActivity", "=====GameClient=====OnClick   logonPlazaBtn==" );
-                GameNativeInterface.connectGamePlaza("127.0.0.1",8888);
                 SharedPreferences sp = getSharedPreferences("acccountBaseInfo", Context.MODE_PRIVATE);
                 String account = sp.getString("account", "zhidongni");
                 String pwd = sp.getString("pwd", "10010");
                 int userId = sp.getInt("userId", 0);
-                GameNativeInterface.loginGamePlaza(account,pwd,userId);
+                ArrayList<String> data = new ArrayList<String>();
+                data.add(account);
+                data.add(pwd);
+                data.add(userId+"");
+                GameLogonAction.queueForDialInBackground(GameLogonAction.ONLOGONPLAZA,data);
                 break;
-            case R.id.registerPlazaBtn:
+            }
+            case R.id.registerPlazaBtn:{
                 LogUtil.d("MainActivity", "=====GameClient=====OnClick   registerPlazaBtn==" );
-                GameNativeInterface.connectGamePlaza("127.0.0.1",8888);
-                GameNativeInterface.registerGamePlaza("zhidongni","10010","18626455927");
+                ArrayList<String> data = new ArrayList<String>();
+                data.add("zhidongni");
+                data.add("10010");
+                data.add("18626455927");
+                GameLogonAction.queueForDialInBackground(GameLogonAction.ONREGISTERPLAZA,data);
                 break;
-            case R.id.unregisterBtn:
+            }
+            case R.id.unregisterBtn:{
                 LogUtil.d("MainActivity", "=====GameClient=====OnClick   unregisterBtn==" );
                 SharedPreferences rsp = getSharedPreferences("acccountBaseInfo", Context.MODE_PRIVATE);
                 int user_Id = rsp.getInt("userId", 0);
-                GameNativeInterface.connectGamePlaza("127.0.0.1",8888);
-                GameNativeInterface.unregisterGameAccount(user_Id);
+                ArrayList<String> data = new ArrayList<String>();
+                data.add(user_Id+"");
+                GameLogonAction.queueForDialInBackground(GameLogonAction.ONUNREGISTERPLAZA,data);
                 break;
+            }
         }
     }
 

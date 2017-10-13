@@ -134,8 +134,6 @@ public class SendMessageAction extends Action implements Parcelable {
         }
 
         requestBackgroundWork();
-        BugleApplication.getDispatcher().sendSMS(data.get(0),data.get(1));
-
         return "executeAction ok!!";
     }
 

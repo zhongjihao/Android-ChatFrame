@@ -27,5 +27,12 @@
 
     </LinearLayout>
 
+    <Button
+        android:text="退出大厅"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:id="@+id/onExit_btn"/>
 
 </LinearLayout>

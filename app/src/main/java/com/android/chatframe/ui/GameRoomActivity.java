@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.chatframe.R;
+import com.android.chatframe.datamodel.action.GameRoomAction;
 import com.android.chatframe.game.GameNativeInterface;
 import com.android.chatframe.game.OcxGameCallbackImpl;
 import com.android.chatframe.game.gametype.CMD_GR_ServerInfo;
@@ -75,19 +76,21 @@ public class GameRoomActivity extends AppCompatActivity implements View.OnClickL
     public void onDestroy() {
         super.onDestroy();
         GameNativeInterface.deleteRoom();
+        OcxGameCallbackImpl.unRegisterOcxRoomMsgEventListener();
+        handle = null;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.onSitDown_btn:
-                GameNativeInterface.sitDownReq((short)1,(short)1);
+                GameRoomAction.queueForRoomRequestInBackground(GameRoomAction.SIT_DOWN_REQ,(short)1,(short)1);
                 break;
             case R.id.onStandUp_btn:
-                GameNativeInterface.standUpReq((short)1,(short)1);
+                GameRoomAction.queueForRoomRequestInBackground(GameRoomAction.STAND_UP_REQ,(short)1,(short)1);
                 break;
             case R.id.onExit_btn:
-                GameNativeInterface.exitRoomReq((short)1,(short)1);
+                GameRoomAction.queueForRoomRequestInBackground(GameRoomAction.EXIT_ROOM_REQ,(short)1,(short)1);
                 break;
         }
     }

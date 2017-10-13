@@ -15,7 +15,7 @@ import android.widget.Toast;
 import android.content.Context;
 
 import com.android.chatframe.R;
-import com.android.chatframe.game.GameNativeInterface;
+import com.android.chatframe.datamodel.action.GamePlazaAction;
 import com.android.chatframe.game.OcxGameCallbackImpl;
 import com.android.chatframe.game.OcxGameCallbackImpl.OcxLoginRoomEventListener;
 import com.android.chatframe.game.gametype.CMD_GR_ColumnInfo;
@@ -65,6 +65,8 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
     @Override
     public void onDestroy() {
         super.onDestroy();
+        handle = null;
+        OcxGameCallbackImpl.unRegisterOcxLoginRoomEventListener();
     }
 
     private void initView(Bundle b){
@@ -87,8 +89,7 @@ public class GamePlazaActivity extends AppCompatActivity implements OcxLoginRoom
                     int room_index = (int)v.getTag();
                     LogUtil.d("MainActivity", "===GameClient===房间地址: " +gameRoom.getDwServerAddr()+" 房间端口: "+gameRoom.getwServerPort()+"  房间索引: "+room_index);
                     Toast.makeText(context,"房间地址: "+gameRoom.getDwServerAddr()+" 房间端口: "+gameRoom.getwServerPort(),Toast.LENGTH_LONG).show();
-                    GameNativeInterface.connectGameRoom(gameRoom.getDwServerAddr(),gameRoom.getwServerPort(),room_index);
-                    GameNativeInterface.loginGameRoom();
+                    GamePlazaAction.queueForLogonRoomInBackground(gameRoom.getDwServerAddr(),gameRoom.getwServerPort(),room_index);
                     //收到用户进入消息后，启动房间界面
                 }
             });

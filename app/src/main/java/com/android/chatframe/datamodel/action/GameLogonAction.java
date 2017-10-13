@@ -25,7 +25,7 @@ public class GameLogonAction extends Action implements Parcelable {
     public final static int ONREGISTERPLAZA = 2;
     public final static int ONUNREGISTERPLAZA = 3;
 
-    public static boolean queueForDialInBackground(final int type,final ArrayList<String> logonInfo) {
+    public static boolean queueForLogonPlazaInBackground(final int type,final ArrayList<String> logonInfo) {
         LogUtil.i(TAG,
                 "======GameLogonAction===zhongjihao===queueForSendInBackground====type: "+type);
         final GameLogonAction action = new GameLogonAction();

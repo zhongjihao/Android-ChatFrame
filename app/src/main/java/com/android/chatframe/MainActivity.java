@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
                 data.add(account);
                 data.add(pwd);
                 data.add(userId+"");
-                GameLogonAction.queueForDialInBackground(GameLogonAction.ONLOGONPLAZA,data);
+                GameLogonAction.queueForLogonPlazaInBackground(GameLogonAction.ONLOGONPLAZA,data);
                 break;
             }
             case R.id.registerPlazaBtn:{
@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
                 data.add("zhidongni");
                 data.add("10010");
                 data.add("18626455927");
-                GameLogonAction.queueForDialInBackground(GameLogonAction.ONREGISTERPLAZA,data);
+                GameLogonAction.queueForLogonPlazaInBackground(GameLogonAction.ONREGISTERPLAZA,data);
                 break;
             }
             case R.id.unregisterBtn:{
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements SendMessageAction
                 int user_Id = rsp.getInt("userId", 0);
                 ArrayList<String> data = new ArrayList<String>();
                 data.add(user_Id+"");
-                GameLogonAction.queueForDialInBackground(GameLogonAction.ONUNREGISTERPLAZA,data);
+                GameLogonAction.queueForLogonPlazaInBackground(GameLogonAction.ONUNREGISTERPLAZA,data);
                 break;
             }
         }

@@ -152,7 +152,7 @@ void TCPSocketEnging::OnRecvCompleted(TcpSocketSink* m_pSocketSink)
             unsigned short wDataSize = wPacketSize - sizeof(CMD_Head);
             void * pDataBuffer = cbBuffer + sizeof(CMD_Head);
             CMD_Command Command = ((CMD_Head *)cbBuffer)->CommandInfo;
-            LOGD("%s: ===GameClient====主命令: %d   ,子命令: %d",__FUNCTION__,Command.wMainCmdID,Command.wSubCmdID);
+            LOGD("%s: ===GameClient===主命令: %d   ,子命令: %d, m_wRecvSize : %d, wPacketSize :%d",__FUNCTION__,Command.wMainCmdID,Command.wSubCmdID,m_wRecvSize,wPacketSize);
 
             //删除缓存数据
             m_wRecvSize -= wPacketSize;
@@ -231,7 +231,7 @@ void TCPSocketEnging::Close()
 {
     if(m_serFd != -1)
     {
-        LOGD("%s: ===GameClient====关闭房间socket： %d=====",__FUNCTION__,m_serFd);
+        LOGD("%s: ===GameClient====关闭socket： %d=====",__FUNCTION__,m_serFd);
         close(m_serFd);
         m_serFd = -1;
     }

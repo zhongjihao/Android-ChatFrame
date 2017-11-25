@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.android.chatframe"
         minSdkVersion 23
@@ -13,7 +13,7 @@ android {
         ndk{
             moduleName "gamecore"
             cFlags "-frtti -fexceptions -std=c++11"
-            stl "gnustl_shared"
+            //stl "gnustl_shared"
             ldLibs "log"
 
             // Specifies the ABI configurations of your native
@@ -23,7 +23,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-frtti -fexceptions -std=c++11"
-                arguments '-DANDROID_STL=gnustl_shared'
+              //  arguments '-DANDROID_STL=gnustl_shared'
             }
         }
 

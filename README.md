@@ -1,6 +1,6 @@
 ChatFrame工程分为三大部分，每部分都是相互独立。
 
-第一部分：后台任务处理框架Action和binding模型
+第一部分：Android平台后台任务处理框架Action和binding模型
    重点需要掌握Action和Binding的实现机制，具体实现在action包和binding包，数据逻辑处理可以抽象为Action模型，如发送消息可以使用SendMessageAction，
    接收消息可以定义ReceiveMessageAction等等。
 
